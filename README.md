@@ -6,10 +6,10 @@ This is a book record management API Backend for the management of records and b
 
 ## /users
 
-POST: Create a new user 
+POST: Create a new user ✅
 GET: Get all list of users 
 
-## /users/{id}
+## /users/{id}  //known as dynamic route
 
 GET: Get a user by id 
 PUT: Update a user by id 
