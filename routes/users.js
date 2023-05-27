@@ -156,7 +156,7 @@ router.get("/subscription-details/:id", (req, res) => {
             // getting date on bacis of data variable
             date = new Date(data);
         }
-        let days = Math.floor(date / (1000 * 60 * 60 * 24));
+        let days = Math.floor(date / (1000 * 60 * 60 * 24));//1000 is for milliseconds
         return days;
     };
 
