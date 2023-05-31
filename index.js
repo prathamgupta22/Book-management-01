@@ -1,18 +1,23 @@
 const express = require("express");
-//JSON DATA IMPORT
-const { users } = require("./data/users.json");
+const dotenv = require("dotenv");
 
+// database connection
+const DbConnection = require("./databaseConnection");
+
+// importing routes
 const usersRouter = require("./routes/users");
 const booksRouter = require("./routes/books");
 
-const app = express();//initialize
+dotenv.config();
+
+const app = express();
+
+DbConnection();
 
 const PORT = 8081;
 
+app.use(express.json());
 
-app.use(express.json());//it will use json format
-
-//to check if our server is running
 app.get("/", (req, res) => {
     res.status(200).json({
         message: "Server is up and running",
@@ -22,13 +27,12 @@ app.get("/", (req, res) => {
 app.use("/users", usersRouter);
 app.use("/books", booksRouter);
 
-//any other if searched which doent exist then it will handle it
 app.get("*", (req, res) => {
     res.status(404).json({
-        message: "this route does not exist",
+        message: "This route does not exist",
     });
 });
 
 app.listen(PORT, () => {
-    console.log('Server is running at port ${PORT}');
+    console.log(`Server is running at port ${PORT}`);
 });
